@@ -1,5 +1,7 @@
 import ContactForm from "../ContactForm/ContactForm";
+import ContactList from "../ContactList/ContactList";
 import SearchBox from "../SearchBox/SearchBox";
+import contacts from "../../data/contacts";
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
+      <ContactList />
     </div>
   );
 }

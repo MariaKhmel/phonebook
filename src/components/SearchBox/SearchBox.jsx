@@ -1,6 +1,8 @@
+import css from "./SearchBox.module.css";
+
 const SearchBox = ({ filterValue, onFilterChange }) => {
   return (
-    <div>
+    <div className={css.searchBox}>
       <label htmlFor="search">Find contacts by name</label>
       <input
         type="text"

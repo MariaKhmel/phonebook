@@ -2,6 +2,7 @@ import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
 import SearchBox from "../SearchBox/SearchBox";
 import initialContacts from "../../data/contacts";
+import css from "./App.module.css";
 import { useState } from "react";
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
   const [filterValue, setFilterValue] = useState("");
 
   return (
-    <div>
+    <div className={css.container}>
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />

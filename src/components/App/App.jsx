@@ -6,12 +6,13 @@ import { useState } from "react";
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
+  const [filterValue, setFilterValue] = useState("");
 
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
+      <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />
       <ContactList contacts={contacts} />
     </div>
   );

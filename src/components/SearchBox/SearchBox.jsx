@@ -1,6 +1,6 @@
 import css from "./SearchBox.module.css";
 
-const SearchBox = ({ filterValue, onFilterChange }) => {
+const SearchBox = ({ filterValue, setFilterValue }) => {
   return (
     <div className={css.searchBox}>
       <label htmlFor="search">Find contacts by name</label>
@@ -9,7 +9,7 @@ const SearchBox = ({ filterValue, onFilterChange }) => {
         id="search"
         name="input"
         value={filterValue}
-        onChange={(e) => onFilterChange(e.target.value)}
+        onChange={(e) => setFilterValue(e.target.value)}
       />
     </div>
   );

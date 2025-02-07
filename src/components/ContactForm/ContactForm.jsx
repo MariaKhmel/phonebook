@@ -10,8 +10,8 @@ const ContactForm = ({ addContact }) => {
     e.preventDefault();
     addContact({
       id: nanoid(),
-      name: e.target.elements.name.value,
-      number: e.target.elements.number.value,
+      name,
+      number,
     });
     setName("");
     setNumber("");

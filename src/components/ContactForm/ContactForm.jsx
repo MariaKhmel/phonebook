@@ -1,13 +1,38 @@
+import { useState } from "react";
 import css from "./ContactForm.module.css";
+import { nanoid } from "nanoid";
 
-const ContactForm = () => {
+const ContactForm = ({ addContact }) => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addContact({
+      id: nanoid(),
+      name: e.target.elements.name.value,
+      number: e.target.elements.number.value,
+    });
+    setName("");
+    setNumber("");
+  };
   return (
-    <form className={css.form}>
+    <form className={css.form} onSubmit={handleFormSubmit}>
       <label>Name</label>
-      <input type="text" />
+      <input
+        type="text"
+        name="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <label>Number</label>
-      <input type="text" />
-      <button>Add contact</button>
+      <input
+        type="text"
+        name="number"
+        value={number}
+        onChange={(e) => setNumber(e.target.value)}
+      />
+      <button type="submit">Add contact</button>
     </form>
   );
 };

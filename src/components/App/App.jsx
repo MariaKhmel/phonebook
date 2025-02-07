@@ -9,10 +9,14 @@ function App() {
   const [contacts, setContacts] = useState(initialContacts);
   const [filterValue, setFilterValue] = useState("");
 
+  const addContact = (contact) => {
+    console.log(contact);
+  };
+
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm addContact={addContact} />
       <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />
       <ContactList contacts={contacts} />
     </div>

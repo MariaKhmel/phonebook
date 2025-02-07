@@ -1,6 +1,8 @@
+import css from "./ContactForm.module.css";
+
 const ContactForm = () => {
   return (
-    <form>
+    <form className={css.form}>
       <label>Name</label>
       <input type="text" />
       <label>Number</label>

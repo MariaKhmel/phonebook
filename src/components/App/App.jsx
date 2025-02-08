@@ -10,7 +10,13 @@ function App() {
   const [filterValue, setFilterValue] = useState("");
 
   const addContact = (contact) => {
-    console.log(contact);
+    setContacts((prevContacts) => [...prevContacts, contact]);
+  };
+
+  const deleteContact = (contactId) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter(({ id }) => id !== contactId)
+    );
   };
 
   return (
@@ -18,7 +24,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} deleteContact={deleteContact} />
     </div>
   );
 }

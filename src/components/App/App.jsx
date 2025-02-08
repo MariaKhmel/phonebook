@@ -3,22 +3,29 @@ import ContactList from "../ContactList/ContactList";
 import SearchBox from "../SearchBox/SearchBox";
 import initialContacts from "../../data/contacts";
 import css from "./App.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addContact, deleteContact } from "../updateContacts";
+
+const LS_KEY = "contacts";
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
   const [filterValue, setFilterValue] = useState("");
 
+  useEffect(() => {
+    const contacts = localStorage.getItem(LS_KEY);
+    const parsedContacts = JSON.parse(contacts);
+    parsedContacts ? setContacts(parsedContacts) : setContacts(initialContacts);
+  }, []);
+
+  useEffect(() => {
+    const stringifiedContacts = JSON.stringify(contacts);
+    localStorage.setItem(LS_KEY, stringifiedContacts);
+  }, [contacts]);
+
   const handleAddContact = (contact) => {
     addContact(contact, setContacts);
   };
-  // const deleteContact = (contactId) => {
-  //   setContacts((prevContacts) =>
-  //     prevContacts.filter(({ id }) => id !== contactId)
-  //   );
-  // };
-
   const handleDeleteContact = (contactId) => {
     deleteContact(contactId, setContacts);
   };

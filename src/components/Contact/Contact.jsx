@@ -1,15 +1,14 @@
 import { BsFillTelephoneFill, BsPersonFill } from "react-icons/bs";
 import css from "./Contact.module.css";
-const Contact = ({ contact, deleteContact }) => {
+const Contact = ({ contact, handleDeleteContact }) => {
   const handleDelete = () => {
-    deleteContact(contact.id);
+    handleDeleteContact(contact.id);
   };
   return (
     <div className={css.card}>
       <ul>
         <li className={css.contactItem}>
           <BsPersonFill />
-
           <p>{contact.name}</p>
         </li>
         <li className={css.contactItem}>

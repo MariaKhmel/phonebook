@@ -4,27 +4,34 @@ import SearchBox from "../SearchBox/SearchBox";
 import initialContacts from "../../data/contacts";
 import css from "./App.module.css";
 import { useState } from "react";
+import { addContact, deleteContact } from "../updateContacts";
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
   const [filterValue, setFilterValue] = useState("");
 
-  const addContact = (contact) => {
-    setContacts((prevContacts) => [...prevContacts, contact]);
+  const handleAddContact = (contact) => {
+    addContact(contact, setContacts);
   };
+  // const deleteContact = (contactId) => {
+  //   setContacts((prevContacts) =>
+  //     prevContacts.filter(({ id }) => id !== contactId)
+  //   );
+  // };
 
-  const deleteContact = (contactId) => {
-    setContacts((prevContacts) =>
-      prevContacts.filter(({ id }) => id !== contactId)
-    );
+  const handleDeleteContact = (contactId) => {
+    deleteContact(contactId, setContacts);
   };
 
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
-      <ContactForm addContact={addContact} />
+      <ContactForm handleAddContact={handleAddContact} />
       <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />
-      <ContactList contacts={contacts} deleteContact={deleteContact} />
+      <ContactList
+        contacts={contacts}
+        handleDeleteContact={handleDeleteContact}
+      />
     </div>
   );
 }

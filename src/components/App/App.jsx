@@ -23,6 +23,10 @@ function App() {
     localStorage.setItem(LS_KEY, stringifiedContacts);
   }, [contacts]);
 
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filterValue.toLocaleLowerCase())
+  );
+
   const handleAddContact = (contact) => {
     addContact(contact, setContacts);
   };
@@ -36,7 +40,7 @@ function App() {
       <ContactForm handleAddContact={handleAddContact} />
       <SearchBox filterValue={filterValue} setFilterValue={setFilterValue} />
       <ContactList
-        contacts={contacts}
+        contacts={visibleContacts}
         handleDeleteContact={handleDeleteContact}
       />
     </div>

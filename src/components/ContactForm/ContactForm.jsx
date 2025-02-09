@@ -1,42 +1,31 @@
 import { useState } from "react";
 import css from "./ContactForm.module.css";
 import { nanoid } from "nanoid";
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const ContactForm = ({ handleAddContact }) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    handleAddContact({
-      id: nanoid(),
-      name,
-      number,
-    });
-    setName("");
-    setNumber("");
+  const handleSubmit = (values, actions) => {
+    actions.resetForm();
   };
+  const initialValues = { name: "", number: "" };
+
   return (
-    <form className={css.form} onSubmit={handleFormSubmit}>
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <label htmlFor="number">Number</label>
-      <input
-        type="text"
-        name="number"
-        id="number"
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
-      />
-      <button type="submit">Add contact</button>
-    </form>
+    <Formik initialValues={initialValues} onSubmit={() => {}}>
+      <Form className={css.form}>
+        <label htmlFor="name">Name</label>
+        <Field type="text" name="name" />
+        <ErrorMessage name="name" />
+
+        <label htmlFor="number">Number</label>
+        <Field type="text" name="number" />
+        <ErrorMessage name="number" />
+
+        <button type="submit">Add contact</button>
+      </Form>
+    </Formik>
   );
 };
 export default ContactForm;

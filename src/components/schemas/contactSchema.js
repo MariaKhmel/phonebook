@@ -1,8 +1,8 @@
-import { string, number, object } from "yup";
+import { string, object } from "yup";
 
-const contactSchema = object.shape({
-  name: string().min(3).max(50).required(),
-  number: number().min(3).max(50).required()
+const ContactSchema = object({
+  name: string().min(3, "Too short").max(50, "Too long").required("Required"),
+  number: string().matches(/^\d+$/, "Phone number must contain only digits").min(3, "Too short").max(50, "Too long").required("Required")
 })
 
-export { contactSchema };
+export { ContactSchema };
